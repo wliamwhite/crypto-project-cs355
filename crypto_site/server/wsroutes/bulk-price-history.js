@@ -1,5 +1,12 @@
 const KCWS = require('../kucoinwebsocket/init.js')
 
+//https://www.kucoin.com/docs/rest/spot-trading/market-data/get-klines
+
+/**
+ * We should be using the GET klines REST request that is documented here instead of going thru the kucoin node sdk 
+ * as we did with the websocket. 
+ */
+
 exports.bulkPriceHistory = async function(coin, start, end, fn) {
     // let fullTopic = '/market/candles?type=1min&symbol=' + coin + '-USDT&startAt='+start+'&endAt=' + end;
     const { data } = await KCWS.candles(coin + '-USDT', '1min', {start, end});
@@ -12,5 +19,5 @@ exports.bulkPriceHistory = async function(coin, start, end, fn) {
     const average = total/count;
     console.log('average price of ' + coin + ' between ' + start + ' and ' + end + ' is ' + average + ' USD');
     console.log(total, count);// WHERE IS THE NaN coming from??????!!!!
-
+    // call callback function fn
 }
