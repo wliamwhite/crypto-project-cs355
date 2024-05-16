@@ -34,27 +34,4 @@ function App(props){
         )
     }
 
-//     if(props.type == 'history'){
-//         let match = coinAndPrice.filter(element => {
-//             if(element.coin == props.coin){
-//                 return element;
-//             }
-//         });
-//         if(match.length === 0){
-//             let componentKey = Math.random() * Math.random();
-//             return (
-//                 <div>
-//                     <Chart
-//                         key={componentKey}
-//                         coin={props.coin}
-//                         history={props.history}
-//                     />
-//                 </div>
-//             )
-//         }
-        
-//     }
-   
-// }
-
 export default App;

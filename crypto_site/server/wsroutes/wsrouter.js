@@ -4,13 +4,21 @@ const KCBULKPRICEHISTORY = require('./bulk-price-history.js');
 
 var unixTime = Math.floor(Date.now() / 1000);
 
+let res = [];
+
 exports.route = async function(data, fn) {
     let message = JSON.parse(data);
+    
     console.log(message);
 
-    let res = [];
-    
-
+    for (let requestedCoin of message.tickers) {
+      res = res.filter(existingCoin => {
+        if (requestedCoin.ticker === existingCoin.ticker.ticker && existingCoin.ticker.interval !== requestedCoin.interval) {
+          return false; // Remove the existingCoin from res
+        }
+        return true; // Keep the existingCoin in res
+      });
+    }
     
     for (let coin of message.tickers) {
       // Use await to wait for each asynchronous operation to complete
@@ -23,19 +31,19 @@ exports.route = async function(data, fn) {
           res.push({
             ticker: coin,
             history: data,
-            price: 0
           });
 
           resolve(); // Resolve the promise when the operation is done
         });
       });
     }
-  
+
     let tickers = [];
     for(let coin of res){
       tickers.push(coin.ticker.ticker);
     }
-    console.log(tickers);
+
+    console.log("\n\n\n" + JSON.stringify(res));
 
     KCSUBSCRIBE.subscribeToMultipleDatafeeds(tickers, response => {
       for(let coin of res){
@@ -43,7 +51,7 @@ exports.route = async function(data, fn) {
           coin.ticker.price = response.price;
         }
       }
+
       fn(JSON.stringify(res));
     });
-    
 }

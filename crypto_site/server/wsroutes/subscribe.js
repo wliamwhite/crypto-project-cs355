@@ -17,20 +17,23 @@ const txtFormat = require('../helpers/formatting.js')
  *  to loop through fullDatafeedTopicList and usubscribe after x seconds
  */
 
+let subscribed = []; // originally for easy websocket termination
+
 exports.subscribeToMultipleDatafeeds = async function(datafeeds, fn) {
-    let fullDatafeedTopicList = []; // originally for easy websocket termination
     datafeeds.forEach((element) => {
-      console.log(element + " attempting to subscribe");
+      // console.log(element + " attempting to subscribe");
       let fullTopic = '/market/ticker:' + element + '-USDT';
-      fullDatafeedTopicList.push(fullTopic);
-      KCWS.datafeed.subscribe(fullTopic, (message) => {
-        let topic = txtFormat.getTickerFromTopic(message.topic)
-        let response = {
-            ticker: topic,
-            price: message.data.price
-        };
-        console.log(message.topic + ': ' + message.data.price);
-        fn(response);
-      });
+      if(!subscribed.includes(fullTopic)){
+        KCWS.datafeed.subscribe(fullTopic, (message) => {
+          let topic = txtFormat.getTickerFromTopic(message.topic)
+          let response = {
+              ticker: topic,
+              price: message.data.price
+          };
+          // console.log(message.topic + ': ' + message.data.price);
+          subscribed.push(fullTopic);
+          fn(response);
+        });
+      }
     });
   }

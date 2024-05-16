@@ -15,6 +15,6 @@ wss.on('connection', ws => {
     });
   });
   ws.on('close', () => {
-      datafeed.unsubscribe();
+      // datafeed.unsubscribe();
   })
 });

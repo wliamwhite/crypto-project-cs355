@@ -17,33 +17,59 @@ send.disabled = true;
 
 // do stuff on click
 send.addEventListener('click', () => {
+    const coin = input.value;
+    const timeframe = interval.value;
     let newCoin = true;
+    let newInterval = true;
     for(let element of topicList){
-        if(element.ticker == input.value){
+        if(element.ticker == coin){
             newCoin = false;
+            if(element.interval == timeframe){
+                newInterval = false;
+            } else {
+                element.interval = timeframe;
+            }
         }
     }
+
     if(newCoin){
-        const coin = input.value;
-        const type = interval.value;
         topicList.push({
             ticker: coin,
-            interval: type
+            interval: timeframe
         });
+        sendMessage(topicList);
+    } else if (newInterval){
         sendMessage(topicList);
     }
 });
 
 // send message when 'enter' is clicked
 document.addEventListener('keyup', e => {
-    if(e.key === 'Enter'){
+    if (e.key === 'Enter') {
         const coin = input.value;
-        const type = interval.value;
-        topicList.push({
-            ticker: coin,
-            interval: type
-        });
-        sendMessage(topicList);
+        const timeframe = interval.value;
+        let newCoin = true;
+        let newInterval = true;
+        for(let element of topicList){
+            if(element.ticker == coin){
+                newCoin = false;
+                if(element.interval == timeframe){
+                    newInterval = false;
+                } else {
+                    element.interval = timeframe;
+                }
+            }
+        }
+
+        if(newCoin){
+            topicList.push({
+                ticker: coin,
+                interval: timeframe
+            });
+            sendMessage(topicList);
+        } else if (newInterval){
+            sendMessage(topicList);
+        }
     }
 });
 
