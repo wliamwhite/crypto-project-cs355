@@ -8,6 +8,9 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;300&family=Roboto+Mono:wght@300&display=swap" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
   </head>
   <body>
 
@@ -16,14 +19,47 @@
         <h1 class="logo"><a href="./index.html">CRYPTO QUOTE</a></h1>
         <ul class="mainNav">
           <li><a href="./index.html">HOME</a></li>
-          <li><a href="./about.html">ABOUT</a></li>
+          <li><a href="#aboutContent" id="aboutLink">ABOUT</a></li>
           <li><a href="./contact.html">CONTACT</a></li>
         </ul>
       </header>
 
       <div class="mainContent">
         <h3>What coin would you like to view today?</h3>
-        <input class="inputOne" id="message" placeholder="Enter ticker to follow in real-time" />
+        <select id="message" class="operator"> 
+          <option value="" disabled selected>Select a coin...</option>
+          <option value="BTC">BTC</option> 
+          <option value="DOGE">DOGE</option>
+          <option value="ETH">ETH</option>
+          <option value="LTC">LTC</option>
+          <option value="SOL">SOL</option>
+          <option value="AVAX">AVAX</option>
+          <option value="USDC">USDC</option>
+        </select>
+
+        <script>
+          $(document).ready(function () {
+              // Change select boxes to selectize mode to be searchable and allow custom values
+              $("#message").select2({
+                  tags: true,
+                  placeholder: "Select a coin / type new one",
+                  allowClear: true // Optional
+              });
+
+              // Smooth scrolling for the About link
+              $("#aboutLink").on('click', function (event) {
+                  if (this.hash !== "") {
+                      event.preventDefault();
+                      var hash = this.hash;
+                      $('html, body').animate({
+                          scrollTop: $(hash).offset().top
+                      }, 800, function () {
+                          window.location.hash = hash;
+                      });
+                  }
+              });
+          });
+      </script>
         <br>
           <label for="interval">Select time interval:</label>
           <select id="interval" name="interval">
@@ -41,9 +77,73 @@
         <script src="../src/index.js"type="text/javascript"></script>
 
       </div>
+      
+      <div id="aboutContent">
+        <div class="about">
+          <h1>About this project: </h1>
+          <p>This site was created by four students from the University of Wisconsin-Eau Claire.
+            We collaborated to conceive and develop this platform as part of our
+              coursework in CS355. Rooted in the essence of industry standards,
+              our primary objective was not only to construct a functional
+              application but also to implement cutting-edge methodologies
+              essential for software development. To achieve this,
+              detailed attention was devoted to making comprehensive
+              documentation, strategically designed to streamline the project's 
+              lifecycle and ensure long-term sustainability. Additionally, rigorous 
+              testing procedures were meticulously orchestrated to encompass 
+              diverse scenarios, fortifying the system's resilience and enhancing 
+              its overall reliability.
+          </p>
+
+          <br><br>
+
+          <h1>Instructions: </h1>
+
+          <h3>Pulling a Coin: </h3>
+
+          <p>To pull a coin from the API, go to the text box to the left of the send button, 
+            If you can't find it, it says "Enter ticker to follow in real-time" inside.
+            Once you're ready to type, type in the ticker of the desire coin. There is 
+            also a drop down menu to select from popular cypto currenies. Once ready to retrieve,
+            hit the "Send" button. After coin is succesfully retrieved, it will display on the screen.
+          </p>
+          <br>
+          <h3>Coin not showing up?</h3>
+
+          <p>If the coin is not showing up, either you entered in an incorrect value in the search bar,
+            or didn't select an option from the drop down menu. Re-check the submission, if you believe
+          you are 100% that you are doing it correct, reach out to our team. We respond fast and will
+          get the issue resolved quickly.
+          </p>
+
+          <br>
+
+          <h3>Help: </h3>
+
+          <p>If you are in need of assistance, please feel free to reach out to our team.
+            We would be happy to help with any other concerns or problems you are encountering.
+          </p>
+
+          <br><br>
+
+        </div>
+      </div>
+
+      <div id="contact">
 
 
+
+
+
+      </div>
+
+      <footer>
+
+        <p>Copyright © 2024 CryptoQuote</p>
+  
+      </footer>
     </div>
+
 
   </body>
 </html>

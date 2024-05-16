@@ -28,6 +28,7 @@ exports.route = async function(data, fn) {
           for (let datum of response.data) {
             data.push(datum[2]);
           }
+          console.log(data);
           res.push({
             ticker: coin,
             history: data,

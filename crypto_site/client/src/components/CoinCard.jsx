@@ -1,13 +1,15 @@
 import React, { useEffect, useRef } from 'react';
 
 function CoinCard(props) {
+
+
     const canvasRef = useRef(null);
 
   useEffect(() => {
     const canvas = canvasRef.current;
     const ctx = canvas.getContext('2d');
 
-    const closePrices = props.history;
+    const closePrices = (props.history).reverse();
 
     const width = canvas.width;
     const height = canvas.height;
@@ -50,7 +52,7 @@ function CoinCard(props) {
     ctx.stroke();
   }, [props.history]);
 
-  return (<div><p>{props.coin}</p><h1>{props.price}</h1><br/><canvas ref={canvasRef} width={800} height={400}></canvas></div>); 
+  return (<div class="individualCoin"><p id="coinName">{props.coin}</p><h1 id="coinPrice">Current Price: ${props.price}</h1><br/><canvas ref={canvasRef} width={800} height={400}></canvas></div>); 
 }
 
 export default CoinCard;

@@ -113,8 +113,95 @@ a {
     margin-right: 8px;
  }
 
- canvas {
-    border: 1px solid #ccc;
-    display: block;
-    margin: 20px auto;
-  }
+ .operator {
+    padding: 0;
+    height: 35px;
+    position: relative;
+    left: 0;
+    outline: none;
+    border: 1px solid black;
+    border-color: rgba(0, 0, 0, .15);
+    background-color: white;
+    font-size: 16px;
+    text-align: center;
+    width: 23rem;
+    margin-bottom: 10px;
+    margin-right: 8px;
+ }
+
+ /* ABOUT PAGE  */
+
+ #aboutContent {
+    border-top: 2px solid black;
+    margin-top: 50%;
+    padding-top: 30px;
+ }
+
+.about {
+    text-align: center;
+    align-items: center;
+}
+
+.about h1 {
+    text-decoration: underline;
+    font-size: 2.1em;
+}
+
+.about h3 {
+    font-size: 1.5em;
+}
+
+.about p {
+    width: 60%;
+    margin: 0 auto;
+    font-size: 1.8em;
+}
+ 
+footer {
+    /* position: fixed; */
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    border-top: 2px solid black;;
+    padding: 10px 0;
+    text-align: center;
+    margin-top: 30px;
+}
+
+#interval {
+    margin-top: 15px;
+    padding: 0;
+    height: 30px;
+    position: relative;
+    left: 0;
+    outline: none;
+    border: 1px solid black;
+    border-color: rgba(0, 0, 0, .15);
+    background-color: white;
+    font-size: 16px;
+    text-align: center;
+    margin-bottom: 10px;
+    width:7rem;
+    margin-right: 8px;
+}
+
+/* Coin customization */
+
+.individualCoin {
+    align-items: center;
+    width: 80%;
+    border: 2px solid black;
+    margin: 0 auto;
+    margin-top: 50px;
+    padding-bottom: 20px;
+    box-shadow: 0 10px 14px rgba(81, 81, 81, 0.4); /* Adding shadow effect */
+}
+
+#coinName {
+    font-size: 2em;
+    text-decoration: underline;
+}
+
+#coinPrice {
+    font-size: 1.6em;
+}
