@@ -1,30 +1,49 @@
 // require routes
 const KCSUBSCRIBE = require('./subscribe.js');
-const KCUNSUBSCRIBE = require('./unsubscribe.js');
 const KCBULKPRICEHISTORY = require('./bulk-price-history.js');
 
-exports.route = function(data, fn) {
+var unixTime = Math.floor(Date.now() / 1000);
 
+exports.route = async function(data, fn) {
     let message = JSON.parse(data);
     console.log(message);
 
-    switch(message.action){
-      case "establishKucoinWebsocket":
-        KCSUBSCRIBE.subscribeToMultipleDatafeeds(message.tickers, response => {
-          fn(JSON.stringify(response))
+    let res = [];
+    
+
+    
+    for (let coin of message.tickers) {
+      // Use await to wait for each asynchronous operation to complete
+      let response = await new Promise(resolve => {
+        KCBULKPRICEHISTORY.bulkPriceHistory(coin.ticker, unixTime, unixTime, coin.interval, response => {
+          let data = [];
+          for (let datum of response.data) {
+            data.push(datum[2]);
+          }
+          res.push({
+            ticker: coin,
+            history: data,
+            price: 0
+          });
+
+          resolve(); // Resolve the promise when the operation is done
         });
-        break;
-      case 'endAllSessions':
-        KCUNSUBSCRIBE.unsubscribeFromMultipleDatafeeds(message.tickers, response => {
-          fn(JSON.stringify(response));
-        });
-        break;
-      case 'bulkPriceHistory':
-        KCBULKPRICEHISTORY.bulkPriceHistory(message.ticker, message.start, message.end, message.type, response => {
-          fn(console.log(JSON.stringify(response)));
-        })
-      break;
-      default:
-        console.log('error: reached default case in ws router');
-    };
+      });
+    }
+  
+    let tickers = [];
+    for(let coin of res){
+      tickers.push(coin.ticker.ticker);
+    }
+    console.log(tickers);
+
+    KCSUBSCRIBE.subscribeToMultipleDatafeeds(tickers, response => {
+      for(let coin of res){
+        if((coin.ticker.ticker + "-USDT") == response.ticker){
+          coin.ticker.price = response.price;
+        }
+      }
+      fn(JSON.stringify(res));
+    });
+    
 }

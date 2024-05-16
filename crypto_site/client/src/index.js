@@ -6,45 +6,50 @@ import App from './components/App.jsx';
 
 // easily identify input and button
 const input = document.getElementById('message');
-const startDatafeedButton = document.getElementById('send');
-const endDatafeedButton = document.getElementById('end');
-const startTimeReq = document.getElementById('startTimeReq');
+const send = document.getElementById('send');
 const interval = document.getElementById('interval');
-
-var unixTime = Math.floor(Date.now() / 1000);
 
 // to store subscribed datafeeds client-side
 let topicList = [];
 
 // only enable button AFTER websocket connection hasbeen established
-startDatafeedButton.disabled = true;
-endDatafeedButton.disabled = true;
+send.disabled = true;
 
 // do stuff on click
-startDatafeedButton.addEventListener('click', () => {
-    topicList.push(input.value);
-    sendMessage(topicList);
-}, false);
-endDatafeedButton.addEventListener('click', endSession, false);
-
-startTimeReq.addEventListener('click', () => {
-    const coin = input.value;
-    const type = interval.value;
-    requestBulkPriceHistory(coin, type);
+send.addEventListener('click', () => {
+    let newCoin = true;
+    for(let element of topicList){
+        if(element.ticker == input.value){
+            newCoin = false;
+        }
+    }
+    if(newCoin){
+        const coin = input.value;
+        const type = interval.value;
+        topicList.push({
+            ticker: coin,
+            interval: type
+        });
+        sendMessage(topicList);
+    }
 });
 
 // send message when 'enter' is clicked
 document.addEventListener('keyup', e => {
     if(e.key === 'Enter'){
-        topicList.push(input.value);
+        const coin = input.value;
+        const type = interval.value;
+        topicList.push({
+            ticker: coin,
+            interval: type
+        });
         sendMessage(topicList);
     }
 });
 
 // enable the button upon websocket connection
 server.onopen = () => {
-    startDatafeedButton.disabled = false;
-    endDatafeedButton.disabled = false;
+    send.disabled = false;
 };
 
 /*
@@ -54,15 +59,21 @@ pass as props into the <App /> component
 */
 
 server.onmessage = event => {
+    console.log("reached onmessage");
     let message = JSON.parse(event.data);
-    ReactDOM.render(
-    <div>
-    <App
-        coin={message.ticker}
-        price={message.price}
-    />
-    </div>,
-    document.getElementById('root'))
+    console.log(message);
+    for(let t of message){
+        ReactDOM.render(
+            <div>
+            <App
+                coin={t.ticker.ticker}
+                price={t.ticker.price}
+                history={t.history}
+            />
+            </div>,
+        document.getElementById('root'))
+    }
+    
 };
 
 
@@ -72,27 +83,8 @@ server.onmessage = event => {
 // function to be called when sending a message
 function sendMessage(topicList){
     const toServer = {
-        action: 'establishKucoinWebsocket',
         tickers: topicList
     };
     server.send(JSON.stringify(toServer));
 };
- 
-function requestBulkPriceHistory(coin, interval) {
-    const toServer = {
-        action: 'bulkPriceHistory',
-        ticker: coin,
-        start: unixTime,
-        end: unixTime,
-        type: interval
-    };
-    server.send(JSON.stringify(toServer));
-}
 
-function endSession() {
-    const toServer = {
-        action: 'endAllSessions',
-        tickers: topicList
-    };
-    server.send(JSON.stringify(toServer));
-};

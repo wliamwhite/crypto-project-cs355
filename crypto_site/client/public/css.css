@@ -112,3 +112,9 @@ a {
     width: 8rem;
     margin-right: 8px;
  }
+
+ canvas {
+    border: 1px solid #ccc;
+    display: block;
+    margin: 20px auto;
+  }
