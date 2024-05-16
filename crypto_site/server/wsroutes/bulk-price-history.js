@@ -8,8 +8,8 @@ const KCWS = require('../KucoinWebsocket/init.js')
  */
 
 exports.bulkPriceHistory = async function(coin, start, end, type, fn) {
-    // let fullTopic = '/market/candles?type=1min&symbol=' + coin + '-USDT&startAt='+start+'&endAt=' + end;
-    const data = await KCWS.candles(coin, type, {start, end});
+    let pair = coin + "-USDT";
+    const data = await KCWS.candles(pair, type, {start, end});
     fn(data);
     // call callback function fn
 }
