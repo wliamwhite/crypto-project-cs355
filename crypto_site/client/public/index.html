@@ -27,11 +27,15 @@
         <button class="buttonOne" id="send">Send</button>
         <button class="buttonTwo" id="end">End session</button>
         <br>
-        <label for="startTime">Start date:</label>
-        <input type="date" id="startTime" min="2010-01-01" max="2024-05-14" />
-        <label for="endTime">Start date:</label>
-        <input type="date" id="endTime" min="2010-01-01" max="2024-05-14" />
-        <input class="inputThree" id="interval" placeholder="enter desired interval (1min, 1hour, 1day, 1week, etc)" />
+          <label for="interval">Select time interval:</label>
+          <select id="interval" name="interval">
+            <option value="1min">1 minute</option>
+            <option value="5min">5 minute</option>
+            <option value="15min">15 minute</option>
+            <option value="1hour">60 minute</option>
+            <option value="1day">1 day</option>
+            <option value="1week">1 week</option>
+          </select>
         <button class="buttonThree" id="startTimeReq">Send request</button>
         <br>
         <div id="root"></div>

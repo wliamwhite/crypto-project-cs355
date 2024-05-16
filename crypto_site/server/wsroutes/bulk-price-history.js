@@ -1,4 +1,4 @@
-const KCWS = require('../kucoinwebsocket/init.js')
+const KCWS = require('../KucoinWebsocket/init.js')
 
 //https://www.kucoin.com/docs/rest/spot-trading/market-data/get-klines
 

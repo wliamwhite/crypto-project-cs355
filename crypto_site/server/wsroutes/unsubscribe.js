@@ -1,4 +1,4 @@
-const KCWS = require('../kucoinwebsocket/init.js');
+const KCWS = require('../KucoinWebsocket/init.js');
 
 exports.unsubscribeFromMultipleDatafeeds = async function(topics, fn){
     console.log(topics);
