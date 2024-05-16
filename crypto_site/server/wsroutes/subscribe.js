@@ -1,4 +1,4 @@
-const KCWS = require('../kucoinwebsocket/init.js')
+const KCWS = require('../KucoinWebsocket/init.js')
 const txtFormat = require('../helpers/formatting.js')
 
 /**

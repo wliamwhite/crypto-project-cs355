@@ -11,6 +11,7 @@ const endDatafeedButton = document.getElementById('end');
 const startTime = document.getElementById('startTime');
 const endTime = document.getElementById('endTime');
 const startTimeReq = document.getElementById('startTimeReq');
+const interval = document.getElementById('interval');
 
 
 // to store subscribed datafeeds client-side
@@ -31,7 +32,8 @@ startTimeReq.addEventListener('click', () => {
     const coin = input.value;
     const start = startTime.value;
     const end = endTime.value;
-    requestBulkPriceHistory(coin, start, end);
+    const type = interval.value;
+    requestBulkPriceHistory(coin, start, end, type);
 });
 
 // send message when 'enter' is clicked
@@ -79,12 +81,13 @@ function sendMessage(topicList){
     server.send(JSON.stringify(toServer));
 };
  
-function requestBulkPriceHistory(coin, startTime, endTime) {
+function requestBulkPriceHistory(coin, startAt, endAt, interval) {
     const toServer = {
         action: 'bulkPriceHistory',
-        tickers: [coin],
-        start: startTime,
-        end: endTime
+        ticker: coin,
+        start: startAt,
+        end: endAt,
+        type: interval
     };
     server.send(JSON.stringify(toServer));
 }

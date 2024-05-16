@@ -1,0 +1,114 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Montserrat', sans-serif;
+    line-height: 1.6;
+    margin: 0;
+    min-height: 100vh;
+    background-color: #ddd;
+}
+
+ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+a {
+    text-decoration: none;
+    color: black;
+}
+
+.logo {
+    margin: 0;
+    font-size: 1.75em;
+}
+
+.mainNav {
+    margin-top: 5px;
+}
+
+.logo a, .mainNav a{
+    padding: 10px 30px;
+    text-transform: uppercase;
+    text-align: center;
+    display: block;
+}
+
+.logo a {
+    font-size: 1.5em;
+}
+
+.mainNav a {
+    color: black;
+    font-size: 1.2em;
+}
+
+.mainNav a:hover {
+    color: #888888;
+}
+
+.header .mainNav {
+    display: flex;
+}
+
+
+.header,
+.main-nav {
+    display: flex;
+}
+
+.header {
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    margin: 0 auto;
+    border-bottom: 2px solid black;
+    padding-top: .5em;
+    padding-bottom: .5em;
+}
+
+ /* MAIN CONTENT */
+
+.mainContent {
+    padding-top: 1.5em;
+    padding-bottom: .5em;
+    text-align: center;
+}
+
+.mainContent h3{
+    font-size: 1.5em;
+}
+
+ .inputOne, .inputTwo, .inputThree {
+    padding: 0;
+    height: 30px;
+    position: relative;
+    left: 0;
+    outline: none;
+    border: 1px solid black;
+    border-color: rgba(0, 0, 0, .15);
+    background-color: white;
+    font-size: 16px;
+    text-align: center;
+    width: 17rem;
+    margin-bottom: 10px;
+    margin-right: 8px;
+ }
+
+ .buttonOne, .buttonTwo, .buttonThree {
+    padding: 0;
+    height: 30px;
+    position: relative;
+    left: 0;
+    outline: none;
+    border: 1px solid black;
+    border-color: rgba(0, 0, 0, .15);
+    background-color: white;
+    font-size: 16px;
+    text-align: center;
+    width: 8rem;
+    margin-right: 8px;
+ }

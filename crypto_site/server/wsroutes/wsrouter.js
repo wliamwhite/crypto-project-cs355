@@ -20,15 +20,11 @@ exports.route = function(data, fn) {
         });
         break;
       case 'bulkPriceHistory':
-        KCBULKPRICEHISTORY.bulkPriceHistory(message.tickers[0], message.start, message.end, response => {
-          // fn(JSON.stringify(response));
+        KCBULKPRICEHISTORY.bulkPriceHistory(message.ticker, message.start, message.end, message.type, response => {
+          fn(console.log(JSON.stringify(response)));
         })
       break;
       default:
-        // ws.send(JSON.stringify({
-        //   ticker: "ERROR",
-        //   price: "ROUTE UNDEFINED"
-        // }));
         console.log('error: reached default case in ws router');
     };
 }
