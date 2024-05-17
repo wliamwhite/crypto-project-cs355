@@ -3,11 +3,12 @@
 }
 
 body {
-    font-family: 'Montserrat', sans-serif;
+    font-family: 'Roboto', sans-serif;
     line-height: 1.6;
     margin: 0;
     min-height: 100vh;
-    background-color: #ddd;
+    background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+    color: #333;
 }
 
 ul {
@@ -18,19 +19,29 @@ ul {
 
 a {
     text-decoration: none;
-    color: black;
+    color: #007bff;
+    transition: color 0.3s ease;
+}
+
+a:hover {
+    color: #0056b3;
 }
 
 .logo {
     margin: 0;
-    font-size: 1.75em;
+    font-size: 2.5em;
+    color: #333;
+    font-family: 'Montserrat', sans-serif;
 }
 
 .mainNav {
-    margin-top: 5px;
+    margin-top: 15px;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
 }
 
-.logo a, .mainNav a{
+.logo a, .mainNav a {
     padding: 10px 30px;
     text-transform: uppercase;
     text-align: center;
@@ -38,170 +49,429 @@ a {
 }
 
 .logo a {
-    font-size: 1.5em;
+    font-size: 2em;
+    font-family: 'Montserrat', sans-serif;
 }
 
 .mainNav a {
-    color: black;
+    color: #333;
     font-size: 1.2em;
+    font-family: 'Roboto', sans-serif;
 }
 
 .mainNav a:hover {
-    color: #888888;
-}
-
-.header .mainNav {
-    display: flex;
-}
-
-
-.header,
-.main-nav {
-    display: flex;
+    color: #007bff;
 }
 
 .header {
+    display: flex;
     flex-direction: column;
     align-items: center;
     width: 100%;
     margin: 0 auto;
-    border-bottom: 2px solid black;
-    padding-top: .5em;
-    padding-bottom: .5em;
+    border-bottom: 2px solid #007bff;
+    padding-top: 1em;
+    padding-bottom: 1em;
+    background-color: #fff;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
-
- /* MAIN CONTENT */
 
 .mainContent {
-    padding-top: 1.5em;
-    padding-bottom: .5em;
+    padding-top: 2em;
+    padding-bottom: 1em;
     text-align: center;
 }
 
-.mainContent h3{
-    font-size: 1.5em;
+.mainContent h3 {
+    font-size: 1.75em;
+    margin-bottom: 20px;
+    color: #007bff;
+    font-family: 'Montserrat', sans-serif;
 }
 
- .inputOne, .inputTwo, .inputThree {
-    padding: 0;
-    height: 30px;
+.inputOne, .inputTwo, .inputThree, .operator {
+    padding: 0 10px;
+    height: 40px;
     position: relative;
     left: 0;
     outline: none;
-    border: 1px solid black;
-    border-color: rgba(0, 0, 0, .15);
-    background-color: white;
+    border: 2px solid #007bff;
+    background-color: #fff;
     font-size: 16px;
     text-align: center;
-    width: 17rem;
+    width: 20rem;
     margin-bottom: 10px;
-    margin-right: 8px;
- }
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    font-family: 'Roboto', sans-serif;
+}
 
- .buttonOne, .buttonTwo, .buttonThree {
-    padding: 0;
-    height: 30px;
+.inputOne:focus, .inputTwo:focus, .inputThree:focus, .operator:focus {
+    border-color: #0056b3;
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+}
+
+.buttonOne, .buttonTwo, .buttonThree {
+    padding: 0 10px;
+    height: 40px;
     position: relative;
     left: 0;
     outline: none;
-    border: 1px solid black;
-    border-color: rgba(0, 0, 0, .15);
-    background-color: white;
+    border: 2px solid #007bff;
+    background-color: #007bff;
+    color: #fff;
     font-size: 16px;
     text-align: center;
-    width: 8rem;
+    width: 10rem;
     margin-right: 8px;
- }
-
- .operator {
-    padding: 0;
-    height: 35px;
-    position: relative;
-    left: 0;
-    outline: none;
-    border: 1px solid black;
-    border-color: rgba(0, 0, 0, .15);
-    background-color: white;
-    font-size: 16px;
-    text-align: center;
-    width: 23rem;
-    margin-bottom: 10px;
-    margin-right: 8px;
- }
-
- /* ABOUT PAGE  */
-
- #aboutContent {
-    border-top: 2px solid black;
-    margin-top: 50%;
-    padding-top: 30px;
- }
-
-.about {
-    text-align: center;
-    align-items: center;
+    cursor: pointer;
+    transition: background-color 0.3s ease, border-color 0.3s ease;
+    font-family: 'Roboto', sans-serif;
+    border-radius: 5px;
 }
 
-.about h1 {
-    text-decoration: underline;
-    font-size: 2.1em;
-}
-
-.about h3 {
-    font-size: 1.5em;
-}
-
-.about p {
-    width: 60%;
-    margin: 0 auto;
-    font-size: 1.8em;
-}
- 
-footer {
-    /* position: fixed; */
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    border-top: 2px solid black;;
-    padding: 10px 0;
-    text-align: center;
-    margin-top: 30px;
+.buttonOne:hover, .buttonTwo:hover, .buttonThree:hover {
+    background-color: #0056b3;
+    border-color: #0056b3;
 }
 
 #interval {
     margin-top: 15px;
-    padding: 0;
-    height: 30px;
+    padding: 0 10px;
+    height: 40px;
     position: relative;
     left: 0;
     outline: none;
-    border: 1px solid black;
-    border-color: rgba(0, 0, 0, .15);
-    background-color: white;
+    border: 2px solid #007bff;
+    background-color: #fff;
     font-size: 16px;
     text-align: center;
     margin-bottom: 10px;
-    width:7rem;
-    margin-right: 8px;
+    width: 10rem;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    font-family: 'Roboto', sans-serif;
 }
 
-/* Coin customization */
+#interval:focus {
+    border-color: #0056b3;
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+}
+
+#aboutContent, #helpSection, #contactSection {
+    border-top: 2px solid #007bff;
+    border-bottom: 2px solid #007bff;
+    margin-top: 50px;
+    padding-top: 30px;
+    background-color: #fff;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    padding: 30px;
+}
+
+.about, .help, .contact {
+    text-align: center;
+    align-items: center;
+}
+
+.about h1, .help h1, .contact h1 {
+    font-size: 2.1em;
+    color: #007bff;
+    font-family: 'Montserrat', sans-serif;
+    margin-bottom: 0.5em;
+    position: relative;
+}
+
+.about h1::after, .help h1::after, .contact h1::after {
+    content: '';
+    display: block;
+    width: 50%;
+    height: 2px;
+    background-color: #007bff;
+    margin: 10px auto 0;
+}
+
+.about h3, .help h3 {
+    font-size: 1.5em;
+    color: #333;
+    font-family: 'Roboto', sans-serif;
+}
+
+.about p, .help p {
+    width: 60%;
+    margin: 0 auto;
+    font-size: 1.2em;
+    color: #666;
+    font-family: 'Roboto', sans-serif;
+}
+
+.contact-details p {
+    margin: 0.5em 0;
+    color: #333;
+    font-family: 'Roboto', sans-serif;
+    text-align: center; /* Ensure contact details are centered */
+}
+
+footer {
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    border-top: 2px solid #007bff;
+    padding: 10px 0;
+    text-align: center;
+    margin-top: 30px;
+    background-color: #fff;
+    border-bottom: 2px solid #007bff; /* Add border to the bottom */
+}
+
+footer p {
+    color: #666;
+    font-family: 'Roboto', sans-serif;
+}
 
 .individualCoin {
     align-items: center;
     width: 80%;
-    border: 2px solid black;
+    border: 2px solid #007bff;
     margin: 0 auto;
     margin-top: 50px;
-    padding-bottom: 20px;
-    box-shadow: 0 10px 14px rgba(81, 81, 81, 0.4); /* Adding shadow effect */
+    padding: 20px;
+    box-shadow: 0 10px 20px rgba(0, 123, 255, 0.1); /* Adding shadow effect */
+    background-color: #fff;
+    border-radius: 10px;
+}
+
+#coinLogo {
+    width: 50px;
+    height: 50px;
+    margin-right: 10px;
+    vertical-align: middle;
+}
+
+.coinDetails {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.coinDetails p {
+    margin: 5px 0;
+    color: #333;
 }
 
 #coinName {
     font-size: 2em;
     text-decoration: underline;
+    color: #007bff;
+    font-family: 'Montserrat', sans-serif;
 }
 
 #coinPrice {
     font-size: 1.6em;
+    color: #333;
+    font-family: 'Roboto', sans-serif;
+}
+
+#toggleChartButton {
+    padding: 10px 20px;
+    font-size: 16px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 20px; /* Add margin to separate it from the canvas */
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+    font-family: 'Roboto', sans-serif;
+}
+
+#toggleChartButton:hover {
+    background-color: #0056b3; /* Darker blue on hover */
+    box-shadow: 0 0 10px rgba(0, 123, 255, 0.5);
+}
+
+.dropdown-btn {
+    padding: 10px 20px;
+    font-size: 1.2em;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-bottom: 1em;
+    display: inline-block;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.dropdown-btn:hover {
+    background-color: #0056b3; /* Darker blue on hover */
+    box-shadow: 0 0 10px rgba(0, 123, 255, 0.5);
+}
+
+.topCryptos {
+    display: none; /* Initially hidden */
+    margin-bottom: 2em;
+    padding: 1em;
+    background-color: #fff;
+    border: 2px solid #007bff;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.topCryptos h3 {
+    font-family: 'Montserrat', sans-serif;
+    color: #007bff;
+    font-size: 1.5em; /* Reduced font size */
+    margin-bottom: 1em;
+}
+
+.topCryptos ul {
+    list-style: none;
+    padding: 0;
+}
+
+.topCryptos ul li {
+    font-family: 'Roboto', sans-serif;
+    font-size: 1em; /* Reduced font size */
+    margin-bottom: 0.5em;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.5em;
+    border-bottom: 1px solid #e9ecef;
+}
+
+.topCryptos ul li:last-child {
+    border-bottom: none;
+}
+
+.topCryptos ul li img {
+    margin-right: 10px;
+    width: 25px; /* Reduced image size */
+    height: 25px; /* Reduced image size */
+}
+
+.coin-info {
+    display: flex;
+    align-items: center;
+}
+
+.coin-price {
+    font-weight: bold;
+    color: #007bff;
+}
+
+.mainContent h3 {
+    font-size: 2em; /* Increased font size */
+    margin-top: 1.5em; /* Added margin-top for spacing */
+}
+
+.mainContent select, .mainContent button {
+    font-size: 1.2em; /* Increased font size */
+}
+
+#interval {
+    font-size: 1.2em; /* Increased font size */
+}
+
+.contact {
+    padding: 2em;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin: 2em auto;
+    max-width: 800px;
+    text-align: center;
+}
+
+.contact h1 {
+    color: #007bff;
+    font-family: 'Montserrat', sans-serif;
+    margin-bottom: 1em;
+}
+
+.contact-details {
+    margin-bottom: 2em;
+    font-family: 'Roboto', sans-serif;
+    text-align: center; /* Center align text */
+}
+
+.contact-details p {
+    margin: 0.5em 0;
+    color: #333;
+}
+
+.contact-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.contact-form label {
+    margin-bottom: 0.5em;
+    color: #007bff;
+    font-weight: bold;
+    width: 100%;
+    text-align: center; /* Center align text */
+}
+
+.contact-form input, .contact-form textarea {
+    margin-bottom: 1em;
+    padding: 0.5em;
+    border: 2px solid #007bff;
+    border-radius: 5px;
+    font-family: 'Roboto', sans-serif;
+    font-size: 1em;
+    width: 100%;
+    max-width: 500px;
+    background: rgba(255, 255, 255, 0.8); /* Slightly transparent background */
+    color: #333;
+    text-align: center; /* Center align text in input and textarea */
+}
+
+.contact-form input::placeholder, .contact-form textarea::placeholder {
+    color: rgba(0, 0, 0, 0.5); /* Transparent tint for placeholder text */
+}
+
+.contact-form input[type="submit"] {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+    font-size: 1.2em; /* Increase font size for button */
+    padding: 0.5em 1em; /* Increase padding for button */
+}
+
+.contact-form input[type="submit"]:hover {
+    background-color: #0056b3;
+    box-shadow: 0 0 10px rgba(0, 123, 255, 0.5);
+}
+
+.help {
+    padding: 2em;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin: 2em auto;
+    max-width: 800px;
+    text-align: center;
+}
+
+.help h1 {
+    color: #007bff;
+    font-family: 'Montserrat', sans-serif;
+    margin-bottom: 1em;
+}
+
+.help h3 {
+    font-size: 1.5em;
+    color: #333;
+    font-family: 'Roboto', sans-serif;
+}
+
+.help p {
+    width: 60%;
+    margin: 0 auto;
+    font-size: 1.2em;
+    color: #666;
+    font-family: 'Roboto', sans-serif;
 }
